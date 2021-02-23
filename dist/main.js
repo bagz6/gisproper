@@ -85,9 +85,9 @@ function getLocation(){
 			if (distance_from_layer_circle <= radius) {
 				counter_points_in_circle += 1;
 				var ofi_paf_html = '<h4>' + counter_points_in_circle +  '. ' + layer.feature.properties.Judul + '</h4>'
-										  + '\n' + 'Luas Bangunan : '+ layer.feature.properties.LuasBangunan +'m2' +'<br>'
+						          + '\n' + 'Luas Bangunan : '+ layer.feature.properties.LuasBangunan +'m2' +'<br>'
 				                          + '\n' + 'Luas Tanah : '+ layer.feature.properties.LuasTanah + 'm2' +'<br>'
-										  + '\n' + 'Harga : '+ layer.feature.properties.Harga + '<br>';
+							  + '\n' + 'Harga : '+ layer.feature.properties.Harga + '<br>';
 				ofi_paf_html += 'Jarak: ' + (distance_from_layer_circle * 0.001).toFixed(2) + 'km';
 
 				$('#ofi_paf').append(ofi_paf_html);
