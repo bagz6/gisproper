@@ -76,13 +76,18 @@ function getLocation(){
 	if (circle !== undefined){
 		circle_lat_long = circle.getLatLng();
 		var counter_points_in_circle = 0;
+
 		propt.eachLayer(function(layer){
 			layer_lat_long = layer.getLatLng();
 			distance_from_layer_circle = layer_lat_long.distanceTo(circle_lat_long);
 			//menampilkan informasi d dalam radius
+
 			if (distance_from_layer_circle <= radius) {
 				counter_points_in_circle += 1;
-				var ofi_paf_html = '<h4>' + counter_points_in_circle +  '. ' + layer.feature.properties.Judul + '</h4>';
+				var ofi_paf_html = '<h4>' + counter_points_in_circle +  '. ' + layer.feature.properties.Judul + '</h4>'
+										  + '\n' + 'Luas Bangunan : '+ layer.feature.properties.LuasBangunan +'m2' +'<br>'
+				                          + '\n' + 'Luas Tanah : '+ layer.feature.properties.LuasTanah + 'm2' +'<br>'
+										  + '\n' + 'Harga : '+ layer.feature.properties.Harga + '<br>';
 				ofi_paf_html += 'Jarak: ' + (distance_from_layer_circle * 0.001).toFixed(2) + 'km';
 
 				$('#ofi_paf').append(ofi_paf_html);
@@ -91,8 +96,31 @@ function getLocation(){
 		$('#ofi_paf_results').html(counter_points_in_circle);
 	}
 
+	// if (circle !== undefined){
+	// 	circle_lat_long = circle.getLatLng();
+	// 	var counter_points_in_circle = 0;
+
+	// 	propt.eachLayer(function(layer){
+	// 		layer_lat_long = layer.getLatLng();
+	// 		distance_from_layer_circle = layer_lat_long.distanceTo(circle_lat_long);
+	// 		//menampilkan informasi d dalam radius
+
+	// 		if (distance_from_layer_circle <= radius) {
+	// 			counter_points_in_circle += 1;
+	// 			var ofi_paf_html = '<h4>' + counter_points_in_circle +  '. ' + layer.feature.properties.Judul + '</h4>'
+	// 									  + '\n' + 'Luas Bangunan : '+ layer.feature.properties.LuasBangunan +'m2' +'<br>'
+	// 			                          + '\n' + 'Luas Tanah : '+ layer.feature.properties.LuasTanah + 'm2' +'<br>'
+	// 									  + '\n' + 'Harga : '+ layer.feature.properties.Harga + '<br>';
+	// 			ofi_paf_html += 'Jarak: ' + (distance_from_layer_circle * 0.001).toFixed(2) + 'km';
+
+	// 			$('#ofi_pafrec').append(ofi_paf_html);
+	// 		}
+	// 	});
+	// }
+
 };
 
 document.getElementById("getLocation").addEventListener("click",getLocation);
+document
 
 //////////////////////////////////////////////////////////////////////////////////
