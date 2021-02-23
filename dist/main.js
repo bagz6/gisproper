@@ -121,6 +121,5 @@ function getLocation(){
 };
 
 document.getElementById("getLocation").addEventListener("click",getLocation);
-document
 
 //////////////////////////////////////////////////////////////////////////////////
