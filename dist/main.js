@@ -11,7 +11,6 @@ L.control.scale().addTo(map);
 
 //map coordinate display
 map.on('mousemove', function(e){
-    console.log(e)
     $('.coordinate').html(`Lat: ${e.latlng.lat} Lng: ${e.latlng.lng}`)
 })
 
@@ -28,8 +27,7 @@ function info(feature, layer){
 		);
 };
 
-var circle
-var search_marker
+let circle, search_marker
 
 //adding marker to the map from geojson data
 var marker = L.markerClusterGroup();
@@ -72,6 +70,7 @@ function getLocation(){
 				opacity: 0.3}).addTo(map)
 	//menghapus isi informasi sebelum dijalankan ulang
 	$('#ofi_paf').html('');
+	
 	//menghitung hasil marker dalam radius
 	if (circle !== undefined){
 		circle_lat_long = circle.getLatLng();
@@ -79,47 +78,55 @@ function getLocation(){
 
 		propt.eachLayer(function(layer){
 			layer_lat_long = layer.getLatLng();
+			
 			distance_from_layer_circle = layer_lat_long.distanceTo(circle_lat_long);
+			
 			//menampilkan informasi d dalam radius
-
+			var coords = []
 			if (distance_from_layer_circle <= radius) {
 				counter_points_in_circle += 1;
-				var ofi_paf_html = '<h4>' + counter_points_in_circle +  '. ' + layer.feature.properties.Judul + '</h4>'
-						          + '\n' + 'Luas Bangunan : '+ layer.feature.properties.LuasBangunan +'m2' +'<br>'
-				                          + '\n' + 'Luas Tanah : '+ layer.feature.properties.LuasTanah + 'm2' +'<br>'
-							  + '\n' + 'Harga : '+ layer.feature.properties.Harga + '<br>';
-				ofi_paf_html += 'Jarak: ' + (distance_from_layer_circle * 0.001).toFixed(2) + 'km';
 
-				$('#ofi_paf').append(ofi_paf_html);
+				if (layer.feature.properties.LuasBangunan == " "){
+					var ofi_paf_html = `
+					<li class="property">
+					<h3 class="property_title">${counter_points_in_circle}. ${layer.feature.properties.Judul}</h3>
+					<div class="property_details">
+					  <span class="Luas Tanah">Luas Tanah : ${layer.feature.properties.LuasTanah} m2</span><br>
+					  <span class="Harga">Harga : ${layer.feature.properties.Harga}</span><br>
+					  <span class="Jarak">Jarak :  ${(distance_from_layer_circle*0.001).toFixed(2)} km </span><br>
+					</div>`
+					
+				}else{
+					var ofi_paf_html = `
+					<li class="property">
+					<h3 class="property_title">${counter_points_in_circle}. ${layer.feature.properties.Judul}</h3>
+					<div class="property_details">
+					  <span class="Luas Bangunan">Luas Bangunan : ${layer.feature.properties.LuasBangunan} m2 </span><br> 
+					  <span class="Luas Tanah">Luas Tanah : ${layer.feature.properties.LuasTanah} m2</span><br>
+					  <span class="Harga">Harga : ${layer.feature.properties.Harga}</span><br>
+					  <span class="Jarak">Jarak :  ${(distance_from_layer_circle*0.001).toFixed(2)} km </span><br>
+					</div>`
+
+				}
+
+				$('#ofi_paf').append(`<li> ${ofi_paf_html} </li>`);
+				// $('ul').on('click','li',moveToPopup());
 			}
-		});
+			})
+		};
 		$('#ofi_paf_results').html(counter_points_in_circle);
 	}
 
-	// if (circle !== undefined){
-	// 	circle_lat_long = circle.getLatLng();
-	// 	var counter_points_in_circle = 0;
+function pick(){
+	var picks = document.getElementById("ofi_paf_container");
+	picks.style.color = 'blue';
+}
 
-	// 	propt.eachLayer(function(layer){
-	// 		layer_lat_long = layer.getLatLng();
-	// 		distance_from_layer_circle = layer_lat_long.distanceTo(circle_lat_long);
-	// 		//menampilkan informasi d dalam radius
-
-	// 		if (distance_from_layer_circle <= radius) {
-	// 			counter_points_in_circle += 1;
-	// 			var ofi_paf_html = '<h4>' + counter_points_in_circle +  '. ' + layer.feature.properties.Judul + '</h4>'
-	// 									  + '\n' + 'Luas Bangunan : '+ layer.feature.properties.LuasBangunan +'m2' +'<br>'
-	// 			                          + '\n' + 'Luas Tanah : '+ layer.feature.properties.LuasTanah + 'm2' +'<br>'
-	// 									  + '\n' + 'Harga : '+ layer.feature.properties.Harga + '<br>';
-	// 			ofi_paf_html += 'Jarak: ' + (distance_from_layer_circle * 0.001).toFixed(2) + 'km';
-
-	// 			$('#ofi_pafrec').append(ofi_paf_html);
-	// 		}
-	// 	});
-	// }
-
-};
+function pick1(){
+	var picks1 = document.getElementById("ofi_paf_container");
+	picks1.style.color = 'black';
+}
 
 document.getElementById("getLocation").addEventListener("click",getLocation);
 
-//////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
