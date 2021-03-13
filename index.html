@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">	
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-touch-fullscreen" content="yes" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="cleartype" content="on">
+
+	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="./lib/leaflet-measure.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
@@ -38,23 +45,24 @@
 			<button id="getLocation">Search</button>
 		</div><br>
 		<div>
-			<button onclick=fullScreenView()>View in Full Screen</button>
+			<button onclick=fullScreenView()>Full Screen View</button>
 			<button class="print-map">Print Map</button>
 			<button class="zoom-to-layer">Back to Center</button>
-		</div>
+		</div><br>
 
-		<h3>Results</h3>
+		<h3>Hasil Pencarian</h3>
 		<div id="ofi_paf_results_container">
-			<span id="ofi_paf_results">0</span> lokasi di dalam radius terpilih
+			<span id="ofi_paf_results">0</span> lokasi dalam radius terpilih
+		</div>
+		<div id="ofi_paf_container" >
+			<ul>
+				<li id="ofi_paf" onmouseover="pick()" onmouseout="pick1()"></li>
+			</ul>
 		</div><br>
-		<div>Hasil Pencarian</div>
-		<div id="ofi_paf_container">
-			<div id="ofi_paf"></div>
-		</div><br>
-		<div>
+		<!-- <div><br>
 			<button onclick=about()>About</button>
 			<button onclick=report()>Report Error</button>
-		</div>
+		</div> -->
 	</div>
 
     <div id="map">
@@ -62,6 +70,7 @@
             <div class="coordinate"></div>
         </div>
     </div>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script> -->
 	</body>
 	
 </html>
