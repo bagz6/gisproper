@@ -62,7 +62,7 @@ function getLocation(){
         map.removeLayer(search_marker);
     }
 
-	map.setView(new L.LatLng(lat, lng), 18);
+	map.setView(new L.LatLng(lat, lng), 17);
 	
 	search_marker = L.marker([lat, lng]).addTo(map)
 						.bindPopup('Lokasi yang Dicari')
