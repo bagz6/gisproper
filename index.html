@@ -22,16 +22,18 @@
 <body>
         <!-- Legend -->
 	<div id="legend">
-		<h1>Gisproper v1.0</h1>
+		<h1>Gisproper v1.5</h1>
 		<p>Masukkan koordinat (latitude, longitude) untuk memulai pencarian</p>
-
+		<!-- value="-8.636601"
+		value="115.190975" -->
 		<div>
-			<input id="latitude" placeholder ="Masukkan latitude (-8.xx)">
-			<input id="longitude" placeholder="Masukkan longitude (115.xx)">
+			<input id="latitude" placeholder ="Masukkan latitude (-8.xx)" >
+			<input id="longitude" placeholder="Masukkan longitude (115.xx)" >
 		</div><br>
 		<div>Pilih Radius Pencarian</div>
 		<div class="form">
 			<select id="radius-selected" name="radius">
+				<option value="0.5">500 meter</option>
 				<option value="1">1 kilometer</option>
 				<option value="1.5">1,5 kilometer</option>
 				<option value="2">2 kilometer</option>
@@ -55,8 +57,7 @@
 			<span id="ofi_paf_results">0</span> lokasi dalam radius terpilih
 		</div>
 		<div id="ofi_paf_container" >
-			<ul>
-				<li id="ofi_paf" onmouseover="pick()" onmouseout="pick1()"></li>
+			<ul id="ofi_paf">
 			</ul>
 		</div><br>
 		<!-- <div><br>
