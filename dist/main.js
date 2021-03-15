@@ -53,6 +53,7 @@ function getLocation(){
 	var lat = document.getElementById("latitude").value;
 	var lng = document.getElementById("longitude").value;
 	var radius = kmToMeters($('#radius-selected').val());
+	var zoomLv = $('#radius-selected').val();
 
 	if(circle) {
         map.removeLayer(circle);
@@ -61,8 +62,24 @@ function getLocation(){
 	if (search_marker) {
         map.removeLayer(search_marker);
     }
-
-	map.setView(new L.LatLng(lat, lng), 16);
+	
+	if (zoomLv === "0.5"){
+		map.setView(new L.LatLng(lat, lng), 17);
+	}else if(zoomLv === "1"){
+		map.setView(new L.LatLng(lat, lng), 16);
+	}else if(zoomLv === "1.5"){
+		map.setView(new L.LatLng(lat, lng), 16);
+	}else if(zoomLv === "2"){
+		map.setView(new L.LatLng(lat, lng), 15);
+	}else if(zoomLv === "2.5"){
+		map.setView(new L.LatLng(lat, lng), 15);
+	}else if(zoomLv === "3"){
+		map.setView(new L.LatLng(lat, lng), 14);
+	}else if(zoomLv === "4"){
+		map.setView(new L.LatLng(lat, lng), 14);
+	}else if(zoomLv === "5"){
+		map.setView(new L.LatLng(lat, lng), 14);
+	}
 	
 	search_marker = L.marker([lat, lng]).addTo(map)
 						.bindPopup('Lokasi yang Dicari')
