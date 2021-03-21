@@ -1,5 +1,5 @@
     //map class initialize
-var map = L.map('map').setView([-8.631812, 115.201907], 10);
+var map = L.map('map').setView([-8.499537, 115.205567], 10);
 
 L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
     maxZoom: 18,
