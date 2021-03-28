@@ -99,14 +99,10 @@ input {
 }
 
 #legend #ofi_paf {
-  height: 400px;
+  height: 380px;
   padding-left: 0.5rem;
   margin-bottom: 0.5rem;
   display: grid;
   cursor: pointer;
   column-gap: 0.5rem;
-}
-
-u {
-  cursor: pointer;
 }
