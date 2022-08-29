@@ -1,2 +1,2 @@
 # gisproper
-Property Explorer
+The JavaScript to run the gisproper project
